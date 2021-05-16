@@ -1,0 +1,9 @@
+version: '3.8'
+services:
+  jscoq:
+    restart: always
+    container_name: "jscoq_server"
+    build: .
+    tty: true
+    ports:
+      - "8080:8080"
