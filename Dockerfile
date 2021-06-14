@@ -1,6 +1,6 @@
-FROM ubuntu
+FROM ubuntu:20.04
 
-ENV USER=jcuser
+ENV USER=jsuser
 ENV PASSWORD=password
 ENV HOME=/home/${USER}
 ENV LANG=ja_JP.UTF-8
@@ -22,11 +22,12 @@ RUN set -x && \
 
 # install http-server
 RUN set -x && \
-        npm install -g http-server
+       npm install -g http-server
 
 # user
 RUN set -x && \
-	useradd -s /bin/bash -m ${USER} && \
+        useradd -s /bin/bash -m ${USER} && \
+        chown -R ${USER}:${USER} /home/${USER} && \
 	gpasswd -a ${USER} sudo && \
         echo "${USER}:${PASSWORD}" | chpasswd
 
@@ -35,8 +36,10 @@ WORKDIR ${HOME}
 
 # install jscoq
 RUN set -x && \
-        npm install jscoq
+       npm install jscoq
+
+RUN set -x && \
+        cp node_modules/jscoq/examples/npm-template.html ./index.html
 
 # exec http server
-WORKDIR ${HOME}/node_modules/jscoq
 CMD http-server
