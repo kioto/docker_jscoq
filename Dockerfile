@@ -4,6 +4,7 @@ ENV USER=jsuser
 ENV PASSWORD=password
 ENV HOME=/home/${USER}
 ENV LANG=ja_JP.UTF-8
+ENV DEBIAN_FRONTEND=noninteractive
 
 USER root
 
