@@ -28,7 +28,7 @@ docker-compose down
 
 コンテナが起動した状態で、ブラウザから
 
-http://localhost:8080
+http://localhost:8081
 
 をアクセすると、以下のような画面が表示される。
 
